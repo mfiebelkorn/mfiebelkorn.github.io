@@ -15,7 +15,7 @@ Not long after implemeting Azure traffic manager, the performance team was peppe
 
 ##The Research
 I started by focusing on why an offline node, would still be getting traffic passed to it. Most traffic managers are smarter than that. I quickly came to find that our Traffic Manager was reporting all nodes degraded, and as such, it was treating them all as though they were healthy. 
-![allNodesDown](/images/downNodes.png)
+![allNodesDown](/images/downNodes.PNG)
 
 It didn't take long to figure out why; Azure Traffic Manager requires the nodes to operate on a public NIC (Which is unfortunate as this was an internal application so the only use for public facing Azure IP Addresses was for this Azure Traffic Manager). In order to establish a heart beat to the nodes, it uses what it knows (the public facing IP Addresses) to try and open the application. If it returns a status of 200, it reports the node is online (yes, it thankfully ignores cert issues which are bound to happen when using the Azure Public DNS Names). The solution then, to get these nodes to start returning status 200, was to simply add the public Azure DNS name of the public NIC to a binding of one of the sites. Simple as that. Nodes started to come online in the Azure Traffic Manager Portal. One problem down. Let's step back to the orginal problem and see if it still persists. 
 
@@ -23,7 +23,8 @@ All nodes online, user accesses the application. Everythign works. Baseline test
 
 ##The Resolution
 I took a step back and decided I needed to better understand how the Azure Traffic Manager works, I probably should have started there in the first place. I found this diagram, which immediately explained our issue. 
-![allNodesDown](/images/downNodes.PNG)
+![allNodesDown](/images/azureTrafficManager.PNG)
+
 You'll notice the smoking gun is line 8 (and the process leading up to it for that matter). The Azure Traffic Manager is essentially a glorified DNS Manager exchanging CNAME Entries! Once the DNS entry is cached client side, the client will connect directly to the node. This will not refresh until a DNS Refresh. In this way, Azure Traffic Manager is not a true Layer 7 Traffic Manager (it doesn't claim to be one by the way, oops).
 
 The only place I can see this SAAS being useful would be if our application was deployed across different geographical locations, and we wanted users to be [directly] connected to the closest application node (or Layer 7 Load Balancer). 
