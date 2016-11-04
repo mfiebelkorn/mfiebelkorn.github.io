@@ -9,10 +9,10 @@ baseurl: '/'
 author:
   name: 'Michael Fiebelkorn'
   email: michael.fiebelkorn@live.com
-  twitter_username: joshgerdes
-  facebook_username: joshgerdes
-  github_username:  joshgerdes
-  linkedin_username:  joshgerdes
+  twitter_username: mfiebs
+  facebook_username: michael.fiebelkorn.7
+  github_username:  mfiebelkorn
+  linkedin_username:  michaelfiebelkorn
 
 defaults:
   -
