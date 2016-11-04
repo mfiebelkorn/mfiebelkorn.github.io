@@ -1,6 +1,6 @@
 # Site settings
-title: Michael Fiebelkorn
-description: 'Infrastructure Engineer working out of Rochester, MN'
+title: Michael Fiebelkorns Blog
+description: 'Infrastructure Engineer focused on DevOps and Automation in a mostly Windows World'
 url: 'http://joshgerdes.com/jekyll-uno'
 baseurl: '/'
 # google_analytics: 'UA-XXXXXX-X'
