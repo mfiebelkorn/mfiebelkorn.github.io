@@ -23,7 +23,7 @@ All nodes online, user accesses the application. Everythign works. Baseline test
 
 ##The Resolution
 I took a step back and decided I needed to better understand how the Azure Traffic Manager works, I probably should have started there in the first place. I found this diagram, which immediately explained our issue. 
-![allNodesDown](/images/azureTrafficManager.png)
+![allNodesDown](/images/downNodes.PNG)
 You'll notice the smoking gun is line 8 (and the process leading up to it for that matter). The Azure Traffic Manager is essentially a glorified DNS Manager exchanging CNAME Entries! Once the DNS entry is cached client side, the client will connect directly to the node. This will not refresh until a DNS Refresh. In this way, Azure Traffic Manager is not a true Layer 7 Traffic Manager (it doesn't claim to be one by the way, oops).
 
 The only place I can see this SAAS being useful would be if our application was deployed across different geographical locations, and we wanted users to be [directly] connected to the closest application node (or Layer 7 Load Balancer). 
@@ -32,8 +32,8 @@ The solution was to stop treating the Azure Traffic Manager as a Layer 7 Load Ba
 
 
 ##Sources
-#[How Traffic Manager Works](https://azure.microsoft.com/en-us/documentation/articles/traffic-manager-how-traffic-manager-works/)
+[How Traffic Manager Works](https://azure.microsoft.com/en-us/documentation/articles/traffic-manager-how-traffic-manager-works/)
 
-#[Traffic Manager Monitoring](https://azure.microsoft.com/en-us/documentation/articles/traffic-manager-monitoring/)
+[Traffic Manager Monitoring](https://azure.microsoft.com/en-us/documentation/articles/traffic-manager-monitoring/)
 
-#[Traffic Manager Troubleshooting Degraded](https://azure.microsoft.com/en-us/documentation/articles/traffic-manager-troubleshooting-degraded/)
+[Traffic Manager Troubleshooting Degraded](https://azure.microsoft.com/en-us/documentation/articles/traffic-manager-troubleshooting-degraded/)
