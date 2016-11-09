@@ -33,3 +33,11 @@ You'd have one Layer 4 Appliance load balancing two Layer 7 Load Balancers. The 
 
 ## Final Thoughts 
 It would be beneficial to anyone looking into implementing load balancing to brush up on your load balancing algorithms and understand some bucket terms like Server Affinity, Load Distribution, and Proxy Settings. Also, if you're looking to implement a Layer 7 load balancer make sure you understand how your particular Layer 7 Load Balancer does it's health checks. That is, how does your load balancer know when nodes are online (or does it know at all). This is important because it serves as the big divider between high availability and load balancing - if a load balancer is not aware of an application node being offline, it will continue to pass traffic to it, and that's bad. If your layer 7 load balancer IS aware of the application server's heart beat, you'll want to understand how EXACTLY it works; does it try and open a web page and call the node unhealthy if it receives 10 Status 200 messages in a row? Does it simply ping the server and call it healthy so long as it responds? These interworking are important if you're to understand just how highly available (or not) your application is after it's behind a load balancer. You need to understand how the client experience is going to be effected whenever you take down a node or a load balancer. 
+
+## Sources/Additional Reading
+http://blog.haproxy.com/loadbalancing-faq/
+
+https://www.nginx.com/resources/glossary/layer-4-load-balancing/
+
+https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts
+
