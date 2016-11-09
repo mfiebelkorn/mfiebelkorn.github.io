@@ -15,13 +15,19 @@ These two layers, Layer 7 and Layer 4 are best used together. Together they comp
 
 ## Layer 7 Load Balancing
 Layer 7 refers to the most common layer to load balance at: the application layer. At this layer a load balancing appliance or VM is privy to information (such as the URL) in the request header. This information essentially runs the show within a typical load balancer setup. Here's a diagram of a typical Layer 7 load balanced application:
+
 ![Layer7LoadBalancedApplication](/images/layer7loadbalancing.png)
+
 User makes request which is routed to the load balancer, the load balancer routes the request to the proper application server based on the URL; in this case, if the URL is 'yourdomain.com/blog' they are routed to the blog backend, else they are routed to the web backend. 
 
 I have worked extensively with just a few Layer 7 Load Balancers, IIS ARR and Stingray Traffic Manager. They operate in much the same way, in IIS you create "Server Farms" which can be one or many nodes
+
 ![IISServerFarms](/images/IISServerFarms.PNG)
+
 Traffic is managed by way of "URL Rewrite" Rules (similar concept, but different name in Stringray Traffic Manager). These rules can get pretty complex, but generally only simple logic is needed. A pretty common way to do some simple load balancing is to use different DNS Names for the different applications, all of which point to the same Layer 7 Load Balancer. In IIS you'd simply add the appropriate Server Farms and add a rule like this... 
+
 ![IISRoutingRules](/images/IISRoutingRules.PNG)
+
 Which passes all traffic to TestFarm2 on one condition, that the header parameter "host header" matches the wildcard pattern "*.mytest.com*". Using this methodlogy you can put any number of application behind the same load balancer so long as those applications can be differentiated at Layer 7 by a different DNS Name. 
 
 Pretty straightforward. Point your applications DNS Entries to the load balancer and make routing rules. But what happens when your Load Balancer needs updates, or goes down unexpectedly... all of your applications go down with it. Enter Layer 4 Load Balancing.
