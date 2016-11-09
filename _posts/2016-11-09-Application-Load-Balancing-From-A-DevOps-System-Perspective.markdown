@@ -34,7 +34,7 @@ Pretty straightforward. Point your applications DNS Entries to the load balancer
 
 ## Layer 4 Load Balancing
 I like to call Layer 4 Load Balancing the Load Balancer's Load Balancer. I know that sounds rediculous, that part of the reason I like to call it that. Layer 4 Load Balancing happens at the transport layer, so it operates on the IP Level. It's not privy to information in the request header, it makes its routing decisions based only on source IP and destination IP. With this layer of load balancing you can specify where you want a group of source IPs to be directed, or you can use it to be aware of your two Layer 7 Load Balancers. You heard me, two Layer 7 load Balancers. By using one Layer 4 load balancing appliance we can increase the availability of our application by making it aware of two layer 7 backend load balancers. Here's a diagram... 
-<Insert Cool Diagram>
+(Insert Cool Helpful Diagram)
 You'd have one Layer 4 Appliance load balancing two Layer 7 Load Balancers. The advantage here is that your [presumably more reliable] Layer 4 Load Balancer Appliance is now your single point of failure and not your [presumably more volitile] Layer 7 Load Balancers can undergo scheduled maintenance and updates. Is this passing the buck of SPOF (Single Point of Failure) off to a different location? Yes. The idea is still useful if you're using a less stable Layer 7 load balancer (not an appliance) that may need updates and maintenance (such as Windows IIS ARR). 
 
 ## Final Thoughts 
