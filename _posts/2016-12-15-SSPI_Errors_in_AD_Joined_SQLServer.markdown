@@ -47,7 +47,7 @@ An [easier] alternative solution would be to give the SQL Service Account in whi
 
 After I implemented the solution and asked our Developement team to test, I was digging through SQL Logs and found that it had actually produced a helpful error. However, I missed it because it was only produced when the SQL Service was restarted (a month prior). I had been using Windows Event Viewer to reveiw SQL Logs (because I didn't have SQL Access initially) and the logs had purged themselves so this error was not showing in the Windows Event Viewer. Inside of the SQL Log Viewer the log file is turned over after every SQL Service Restart you can find the log entries from the last Service quickly by choosing the previous archived file.
 
-![SQLLogs](/images/SQLLogs.PNG)
+![SQLLogs](/images/SQLLogs.png)
 
 You can see the two entries above from the last Service restart stating in plain view that there was a problem auto creating the SPNs. After I made the permission change and restarted I found simlar entries in the logs saying that the SPNs were created successfully this time. 
 
