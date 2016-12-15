@@ -6,12 +6,12 @@ comments: false
 modified: 2016-12-15
 ---
 
-Recently, our DevOps Engineer was stuck on an issue that our Development team reporting. During their unit tests (seven hours worth of code testing usually ran nightly) they were getting a load of errors in their Jenkins logs reporting:
+Recently, our DevOps Engineer was stuck on an issue that our Development team was reporting. During their unit tests (seven hours worth of code testing usually ran nightly) they were getting a load of errors within Jenkins:
 
 System.Data.Entity.Core.EntityException : The underlying provider failed on Open.
   ----> System.Data.SqlClient.SqlException : The target principal name is incorrect.  Cannot generate SSPI context.
 
-Our DevOps Engineer (being the smart guy he is) passed it off to me (Infrastructure Engineer) because he recognized it as a Kerberos related issue. Since I was one of the Active Directory admins, this was now my problem. And since our Active Directory had been acting strangly for the past year ever since we started using a two-way trust with a company we merged with, I had no doubt this wouldn't be easy to solve. 
+Our DevOps Engineer (being the smart guy he is) passed it off to me (Infrastructure Engineer) because he recognized it as a Kerberos related issue. Since our Active Directory had been acting strangly for the past year ever since we started using a two-way trust with a company we merged with, I had no doubt this wouldn't be easy to solve. 
 
 ## Initial Ideas
 
