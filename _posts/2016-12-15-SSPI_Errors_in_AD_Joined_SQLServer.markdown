@@ -11,7 +11,7 @@ Recently, our DevOps Engineer was stuck on an issue that our Development team wa
 System.Data.Entity.Core.EntityException : The underlying provider failed on Open.
   ----> System.Data.SqlClient.SqlException : The target principal name is incorrect.  Cannot generate SSPI context.
 
-Our DevOps Engineer (being the smart guy he is) passed it off to me (Infrastructure Engineer) because he recognized it as a Kerberos related issue. Since our Active Directory had been acting strangly for the past year ever since we started using a two-way trust with a company we merged with, I had no doubt this wouldn't be easy to solve. 
+Since our Active Directory had been acting strangly for the past year ever since we started using a two-way trust with a company we merged with, I had no doubt this wouldn't be easy to solve. 
 
 ## Initial Ideas
 
