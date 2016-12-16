@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Application Load Balancing From a DevOps System Perspective"
+title:  "Application Load Balancing"
 date:   2016-11-09 13:39:00
 comments: false
 modified: 2016-11-09
