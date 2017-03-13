@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A Common[ish] Azure Traffic Manager Misconception"
+title:  "An Azure Traffic Manager Misconception"
 date:   2016-11-04 14:13:00
 comments: false
 modified: 2016-11-04
