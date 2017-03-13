@@ -1,12 +1,11 @@
 ---
 layout: post
-title:  "Setting up Red Hat JBoss A-MQ"
+title:  "Setting up RHEL JBoss A-MQ"
 date:   2017-03-13 09:53:00
 comments: false
 modified: 2017-03-13
 ---
 
-### What is JBoss A-MQ
 JBoss A-MQ is RHEL's version of the Apache Active MQ service. It's a messaging queue designed to application integration. They call these services "Fire and Forget" in that they send (or receive) the message, then forget about it. No need to store historical data, just fire and forget. Like Apache Active MQ, RHEL J-Boss A-MQ uses KahaDB for message organization. KahaDB is a file based persistence database that is local to the message broker that is using it. It has been optimized for fast persistence. As near as I can tell, KahaDB is developed specifically for messaging services (hence the performance boost, and why I can't find it anywhere else).
 
 ### Underlying Drive Configuration
