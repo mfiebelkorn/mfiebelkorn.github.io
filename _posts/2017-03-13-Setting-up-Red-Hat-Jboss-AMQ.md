@@ -17,27 +17,27 @@ LVM (Comes out of the box with RHEL) makes disk striping and other activites in 
 
 So, attach disks, create physical volumes on those disks, create a volume group made of those physical volumes, then create a logical volume on the volume group, put a file system on that volume, then mount it. I won’t cover the attaching of disks, that depends on how (if) you’re virtualizing your VM. After you disks are attached, take a look at their device names …
 
-![LVM-lsblk](/images/LVM-1.png)
+![LVM-lsblk](/images/LVM-1.PNG)
 
 In the example above, you can see three 5G disks named sdb, sdc, sdd, and sde. Those are the disks I just attached to this example VM and want to stripe. Now let’s make an LVM Volume Group from those disks 
 
-![LVM-CreatePhysicalVolumes](/images/LVM-2.png)
+![LVM-CreatePhysicalVolumes](/images/LVM-2.PNG)
 
 Now we have four LVM Physical Volumes. Let’s create a volume group named “data_volume_group” from those physical volumes. 
 
-![LVM-CreateVolumeGroup](/images/LVM-3.png)
+![LVM-CreateVolumeGroup](/images/LVM-3.PNG)
 
 Almost there, next let’s put a Logical Volume called “data_volume” on that Volume Group. Since we plan to only put one LV (Logical Volume) on that VG (Volume Group), we’ll use the entire capacity of the volume group “—extents 100%FREE”. We’ll make sure we create one stripe per physical disk to ensure we’re getting max io from this logical volume (link to further stripe understanding at bottom of page). 
 
-![LVM-CreateLogicalVolume](/images/LVM-4.png)
+![LVM-CreateLogicalVolume](/images/LVM-4.PNG)
 
 Lastly we need to put a filesystem on this logical volume, and mount it. 
 
-![LVM-CreateFSandMount](/images/LVM-5.png)
+![LVM-CreateFSandMount](/images/LVM-5.PNG)
 
 Our fstab entry to ensure the volume is mounted after restarts … 
 
-![LVM-FStab](/images/LVM-6.png)
+![LVM-FStab](/images/LVM-6.PNG)
 
 Lastly, run mount '/data' to mount your ext4 filesystem on the logical volume you created “data_volume”
 
