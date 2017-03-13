@@ -6,9 +6,6 @@ comments: false
 modified: 2017-03-13
 ---
 
-* TOC
-{:toc}
-
 ## What is JBoss A-MQ
 JBoss A-MQ is RHEL's version of the Apache Active MQ service. It's a messaging queue designed to application integration. They call these services "Fire and Forget" in that they send (or receive) the message, then forget about it. No need to store historical data, just fire and forget. Like Apache Active MQ, RHEL J-Boss A-MQ uses KahaDB for message organization. KahaDB is a file based persistence database that is local to the message broker that is using it. It has been optimized for fast persistence. As near as I can tell, KahaDB is developed specifically for messaging services (hence the performance boost, and why I can't find it anywhere else).
 
@@ -18,17 +15,17 @@ We started with a single drive with RHEL installed and AMQ running under a home 
 LVM (Comes out of the box with RHEL) makes disk striping and other activites in the like very simple. The only confusing part when starting with LVM is getting used to the abstract architecture that it operates on. Here's a picture from RHEL documentation (source cited at bottom of page).
 ![LVMArchitecture](/images\LVMArchitecture.PNG "LVMArchitecture")
 So, attach disks, create physical volumes on those disks, create a volume group made of those physical volumes, then create a logical volume on the volume group, put a file system on that volume, then mount it. I won’t cover the attaching of disks, that depends on how (if) you’re virtualizing your VM. After you disks are attached, take a look at their device names …
-![LVM-lsblk](/images/LVM-1.png)
+![LVM-lsblk](/images\LVM-1.png)
 In the example above, you can see three 5G disks named sdb, sdc, sdd, and sde. Those are the disks I just attached to this example VM and want to stripe. Now let’s make an LVM Volume Group from those disks 
-![LVM-CreatePhysicalVolumes](/images/LVM-2.png)
+![LVM-CreatePhysicalVolumes](/images\LVM-2.png)
 Now we have four LVM Physical Volumes. Let’s create a volume group named “data_volume_group” from those physical volumes. 
-![LVM-CreateVolumeGroup](/images/LVM-3.png)
+![LVM-CreateVolumeGroup](/images\LVM-3.png)
 Almost there, next let’s put a Logical Volume called “data_volume” on that Volume Group. Since we plan to only put one LV (Logical Volume) on that VG (Volume Group), we’ll use the entire capacity of the volume group “—extents 100%FREE”. We’ll make sure we create one stripe per physical disk to ensure we’re getting max io from this logical volume (link to further stripe understanding at bottom of page). 
-![LVM-CreateLogicalVolume](/images/LVM-4.png)
+![LVM-CreateLogicalVolume](/images\LVM-4.png)
 Lastly we need to put a filesystem on this logical volume, and mount it. 
-![LVM-CreateFSandMount](/images/LVM-5.png)
+![LVM-CreateFSandMount](/images\LVM-5.png)
 Our fstab entry to ensure the volume is mounted after restarts … 
-![LVM-FStab](/images/LVM-6.png)
+![LVM-FStab](/images\LVM-6.png)
 Lastly, run mount /data to mount your ext4 filesystem on the logical volume you created “data_volume”
 ##Moving RHEL J-Boss A-MQ
 This part of the process in practice was very easy - though I had trouble finding helpful documentation on how to do this. So there was much research involved to minimize downtime. 
