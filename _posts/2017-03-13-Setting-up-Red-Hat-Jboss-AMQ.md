@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Setting up RHEL JBoss A-MQ"
+title:  "Moving RHEL JBoss A-MQ to faster disks"
 date:   2017-03-13 09:53:00
 comments: false
 modified: 2017-03-13
