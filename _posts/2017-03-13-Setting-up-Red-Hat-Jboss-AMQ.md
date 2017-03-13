@@ -58,5 +58,7 @@ Done and done. The A-MQ service (and hawtio for web management) is now running f
 
 ## Sources/Additional Reading
 [RHEL's Documentation for LVM Architecture](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Logical_Volume_Manager_Administration/LVM_definition.html)
+
 [Ubuntu's Linux FSTAB Documentation](https://help.ubuntu.com/community/Fstab)
+
 [RHEL J-Boss A-MQ](https://www.redhat.com/en/technologies/jboss-middleware/amq)
