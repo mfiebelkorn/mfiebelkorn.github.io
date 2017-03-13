@@ -11,7 +11,7 @@ JBoss A-MQ is RHEL's version of the Apache Active MQ service. It's a messaging q
 ## Underlying Drive Configuration
 I didn't get too carried away with drive optimization, albeit I read more than one blog about people getting down into the nitty gritty details of performance tweaking and optimizing (FS Optimization and benchmarking IOPs etc.). I did however macro manage the disk performance of disk this service runs on as it is a vital piece of our architecture.
 We started with a single drive with RHEL installed and AMQ running under a home profile. Our performance team located a bottle neck in disk utilization, so we made a change. We attached four HDDs, striped them with LVM, mounted them under /data, then ran the amq service from this location. To anyone not familiar with this process, it might sound very complicated - it's not!
-LVM (Comes out of the box with RHEL) makes disk striping and other activites in the like very simple. The only confusing part when starting with LVM is getting used to the abstract architecture that it operates on. Here's a picture from RHEL documentation (source cited at bottom of page).
+LVM (Comes out of the box with RHEL) makes disk striping and other activites in the like very simple. The only confusing part when starting with LVM is getting used to the abstract architecture that it operates on. Here's a picture from RHEL documentation:
 
 ![LVMArchitecture](/images/LVMArchitecture.png)
 
