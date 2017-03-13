@@ -13,7 +13,7 @@ I didn't get too carried away with drive optimization, albeit I read more than o
 We started with a single drive with RHEL installed and AMQ running under a home profile. Our performance team located a bottle neck in disk utilization, so we made a change. We attached four HDDs, striped them with LVM, mounted them under /data, then ran the amq service from this location. To anyone not familiar with this process, it might sound very complicated - it's not!
 LVM (Comes out of the box with RHEL) makes disk striping and other activites in the like very simple. The only confusing part when starting with LVM is getting used to the abstract architecture that it operates on. Here's a picture from RHEL documentation (source cited at bottom of page).
 
-![LVMArchitecture](/images/LVMArchitecture.PNG)
+![LVMArchitecture](/images/LVMArchitecture.png)
 
 So, attach disks, create physical volumes on those disks, create a volume group made of those physical volumes, then create a logical volume on the volume group, put a file system on that volume, then mount it. I won’t cover the attaching of disks, that depends on how (if) you’re virtualizing your VM. After you disks are attached, take a look at their device names …
 
