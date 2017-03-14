@@ -6,12 +6,14 @@ comments: false
 modified: 2017-03-13
 ---
 
-JBoss A-MQ is RHEL's version of the Apache Active MQ service. It's a messaging queue designed to application integration. They call these services "Fire and Forget" in that they send (or receive) the message, then forget about it. No need to store historical data, just fire and forget. Like Apache Active MQ, RHEL J-Boss A-MQ uses KahaDB for message organization. KahaDB is a file based persistence database that is local to the message broker that is using it. It has been optimized for fast persistence. As near as I can tell, KahaDB is developed specifically for messaging services (hence the performance boost, and why I can't find it anywhere else).
+JBoss A-MQ is RHEL's version of the Apache Active MQ service. It's a messaging queue designed to integrate applications. This service is classified as a "Fire and Forget" service in that it receives a message, which is consumed by a consumer, and then the message is forgotten about. No historical data is saved. Like Apache Active MQ, RHEL J-Boss A-MQ uses KahaDB for message organization. KahaDB is a file based persistence database that is local to the message broker that is using it. It has been optimized for fast persistence. As near as I can tell, KahaDB is developed specifically for messaging services (hence the performance boost, and why I can't find it anywhere else).
 
 ## Underlying Drive Configuration
-I didn't get too carried away with drive optimization, albeit I read more than one blog about people getting down into the nitty gritty details of performance tweaking and optimizing (FS Optimization and benchmarking IOPs etc.). I did however macro manage the disk performance of disk this service runs on as it is a vital piece of our architecture.
-We started with a single drive with RHEL installed and AMQ running under a home profile. Our performance team located a bottle neck in disk utilization, so we made a change. We attached four HDDs, striped them with LVM, mounted them under /data, then ran the amq service from this location. To anyone not familiar with this process, it might sound very complicated - it's not!
-LVM (Comes out of the box with RHEL) makes disk striping and other activites in the like very simple. The only confusing part when starting with LVM is getting used to the abstract architecture that it operates on. Here's a picture from RHEL documentation:
+I read more than one blog about people getting down into the micro details of performance tweaking and optimizing (FS Optimization and benchmarking IOPs etc.). I didn't get that carried away, there was no need. I focused ont the macro changes we could make to increase the disk performance of this service as it is was a vital piece of our architecture.
+
+We started with a single drive with RHEL installed and AMQ running under a home profile. Our performance team located a bottle neck in disk utilization, so we made a change; We attached four HDDs, striped and mounted them under /data, then ran the amq service from this location. To anyone not familiar with this process, it might sound very complicated - it's not!
+
+LVM (which comes standard with RHEL) makes disk striping and other activites in the like, very simple. The most confusing concept to me, when getting starting with LVM was getting used to the abstract architecture that it operates on. Enter a helpful picture:
 
 ![LVMArchitecture](/images/LVMArchitecture.png)
 
