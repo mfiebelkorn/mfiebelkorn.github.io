@@ -1,7 +1,7 @@
 # Site settings
-title: Michael Fiebelkorns Blog
+title: "Michael Fiebelkorn's Blog"
 description: 'Infrastructure Engineer focused on DevOps and Automation in a mostly Windows World'
-url: 'http://joshgerdes.com/jekyll-uno'
+url: 'http://fiebelkorn.io/'
 baseurl: '/'
 # google_analytics: 'UA-XXXXXX-X'
 # disqus_shortname: 'your-disqus-name'
